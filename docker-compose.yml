@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '3'
+services:
+  create-service:
+    build:
+      context: ./create-service
+    ports:
+      - "3001:3001"
+  read-service:
+    build:
+      context: ./read-service
+    ports:
+      - "3002:3002"
+  update-service:
+    build:
+      context: ./update-service
+    ports:
+      - "3003:3003"
+  delete-service:
+    build:
+      context: ./delete-service
+    ports:
+      - "3004:3004"
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "3000:3000"
+    links:
+      - create-service
+      - read-service
+      - update-service
+      - delete-service
